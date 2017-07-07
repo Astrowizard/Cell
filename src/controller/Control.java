@@ -84,6 +84,7 @@ public class Control {
 	public void reset(int zz){
 		tank = new Tank(zz);
 		size = zz;
+		while(sqSize*zz>800){sqSize-=1;};
 		img = new TankImg(tank,sqSize);
 		pause();
 		first = true;
@@ -115,12 +116,16 @@ public class Control {
             			f = Integer.parseInt(s);
             		}
             		catch(Exception e){
-            			System.out.println("not and integer");
+            			System.out.println("not an integer");
             		}
             	}
             	else {
             		f = 9;
             		System.out.println("Not an integer");
+            	}
+            	if (f > 800){
+            		f = 9;
+            		System.out.println("too big");
             	}
             	reset(f);
             }
@@ -239,16 +244,22 @@ public class Control {
 		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			Point p = arg0.getPoint();
 			int xx = (int) p.getX();
 			int yy = (int) p.getY();
 			
+			yy = yy - 25;
 			
-			tank.position[(xx/img.b)][((yy)/img.b)].putCell(new Cell());
+			int x = (int) Math.floor(xx/sqSize);
+			int y = (int) Math.floor(yy/sqSize);
+			
+			
+			tank.position[x][y].putCell(new Cell());
+			System.out.println(Math.floor(xx/sqSize) + "," + Math.floor(yy/sqSize));
+			System.out.println(xx + "," + yy);
 			//window2.showMousePos((int)p.getX(), (int)p.getY());
 
-			img = new TankImg(tank,sqSize);
+			img = new TankImg(tank,sqSize,p);
 			window1.repaintWindow(img);
 			System.out.println("done");
 			
