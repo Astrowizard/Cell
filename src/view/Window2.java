@@ -5,6 +5,8 @@ import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;*/
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,30 +57,23 @@ public class Window2 {
 		
 	}
 	
-	/*private void init(final Window1 window1){
+	public void init(Button rsb, Button csb, Button pcb, Button acrb, Button pb, Button pab){
 		f.setLayout(new FlowLayout());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(300, 300);
-		f.setLocationByPlatform(true);
+		//f.setLocationByPlatform(true);
 		f.setFocusable(true);
 		size.setColumns(10);
 		splitE.setColumns(10);
 		maxA.setColumns(10);
 		moveC.setColumns(10);
 		
-		resetButton = control.resetButton();
-		changeSize = control.changeSizeButton();
-		printCells = control.printCellsButton();
-		addCellRandom = control.addRandomCellButton(cellStats);
-		playButton = control.playButton();
-		pauseButton = control.pauseButton();
-		
-		confirmStats.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-            	getCellStats();
-            }
-        });
+		resetButton = rsb;
+		changeSize = csb;
+		printCells = pcb;
+		addCellRandom = acrb;
+		playButton = pb;
+		pauseButton = pab;
 		
 		f.add(resetButton);
 		f.add(addCellRandom);
@@ -103,7 +98,8 @@ public class Window2 {
 		f.add(p2);
 		
 		f.pack();
-	}*/
+	}
+	
 	public void showMousePos(int xx, int yy){
 		
 		String s = xx + " " + yy;

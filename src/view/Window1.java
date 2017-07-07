@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
@@ -38,11 +39,12 @@ public class Window1 {
         f.pack();
 	}
 	
-	public void thing(KeyListener listn){
+	public void thing(KeyListener listn, MouseListener mlistn){
 		f.setContentPane(img.view);
 		f.pack();
 		f.setVisible(true);
 		f.addKeyListener(listn);
+		f.addMouseListener(mlistn);
 		//img.view.addMouseListener(new CustomMouseListener());
 	}
 	

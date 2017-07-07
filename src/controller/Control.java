@@ -33,21 +33,9 @@ public class Control {
 	
 	public Control(){}
 	
-	public void init(){
-		tank = new Tank();
-		tank.addCell(size/2, size/2, defCellStats);
-		
-		img = new TankImg(tank, 40);
-		img.view.addMouseListener(new CustomMouseListener());
-		
-		window1 = new Window1(tank, img);
-		window2 = new Window2(defCellStats);
-		
-		window1.thing(new CustomKeyListener());
-	}
-	
 	public void advance(){
     	tank.tankLogic();
+    	img = new TankImg(tank, sqSize);
     	window1.repaintWindow(img);
     	count++;
 	}
@@ -61,10 +49,12 @@ public class Control {
 		else{
 			pause = true;
 		}
+		System.out.println("running");
 	}
 	
 	public void pause(){
 		pause = false;
+		System.out.println("paused");
 	}
 	
 	public Button resetButton(){
@@ -83,13 +73,22 @@ public class Control {
 	
 	public void reset(){
 		tank = new Tank(size);
+		img = new TankImg(tank,sqSize);
+		pause();
+		first = true;
+		t = null;
+		t = new Thread(new threader());
 		window1.repaintWindow(img);
 	}
 	
 	public void reset(int zz){
 		tank = new Tank(zz);
 		size = zz;
-		sqSize = 40;
+		img = new TankImg(tank,sqSize);
+		pause();
+		first = true;
+		t = null;
+		t = new Thread(new threader());
 		window1.repaintWindow(img);
 	}
 	
@@ -143,13 +142,13 @@ public class Control {
 		return button;
 	}
 	
-	public Button addRandomCellButton(final double[] cellStats){
+	public Button addRandomCellButton(){
 		Button button = new Button("Add Random Cell");
 		
 		button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-            	Window1.tank.addCellRandom(cellStats);
+            	tank.addCellRandom(defCellStats);
             	window1.repaintWindow(img);
             }
         });
@@ -248,7 +247,8 @@ public class Control {
 			
 			tank.position[(xx/img.b)][((yy)/img.b)].putCell(new Cell());
 			//window2.showMousePos((int)p.getX(), (int)p.getY());
-			
+
+			img = new TankImg(tank,sqSize);
 			window1.repaintWindow(img);
 			System.out.println("done");
 			
@@ -281,6 +281,19 @@ public class Control {
 			
 		}
 	}
-	
+
+	public void init(){
+		tank = new Tank();
+		tank.addCell(size/2, size/2, defCellStats);
+		
+		img = new TankImg(tank, 40);
+		img.view.addMouseListener(new CustomMouseListener());
+		
+		window1 = new Window1(tank, img);
+		window2 = new Window2(defCellStats);
+		
+		window1.thing(new CustomKeyListener(), new CustomMouseListener());
+		window2.init(resetButton(), changeSizeButton(), printCellsButton(), addRandomCellButton(), playButton(), pauseButton());
+	}
 
 }
