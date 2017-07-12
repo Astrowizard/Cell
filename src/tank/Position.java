@@ -2,13 +2,13 @@ package tank;
 
 public class Position {
 	
-	int acid;
+	float acid;
 	Cell cell = null;
 	boolean liveCell = false;
 	
 	public Position(){
 		
-		this.acid = 10;
+		this.acid = 1;
 		
 	}
 	
@@ -30,12 +30,15 @@ public class Position {
 				cellEat();
 			}
 			if (inf == 3){ // Move
-				cell.move();
+				//cell.move();
 				inff = 2;
 			}
 			if (inf == 4){ // Die 
 				cellDie();
 			}
+		}
+		if (acid > 1){
+			System.out.println(acid);
 		}
 		return inff;
 	}
@@ -50,7 +53,7 @@ public class Position {
 	public void cellEat(){
 		
 		cell.eat();
-		acid --;
+		acid = (float) (acid - .01);
 		
 	}
 	
@@ -67,7 +70,10 @@ public class Position {
 		
 	}
 
-	public int getAcid() {
+	public double getAcid() {
+		if (acid < 0){
+			acid = 0;
+		}
 		return acid;
 	}
 

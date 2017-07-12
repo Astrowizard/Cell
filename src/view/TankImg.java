@@ -15,10 +15,10 @@ import tank.*;
 public class TankImg extends Component {
 	
 	BufferedImage surface;
-	JLabel view;
+	public JLabel view;
 	Color[] colors = {Color.BLACK,Color.PINK,Color.RED,Color.ORANGE,Color.YELLOW,Color.GREEN,Color.CYAN,Color.BLUE,
 			Color.MAGENTA,Color.WHITE};
-	int b = 10;
+	public int b = 10;
 	
 	Tank tank;
 	
@@ -42,12 +42,7 @@ public class TankImg extends Component {
 		}
 		for (int i = 0; i<tank.getZ();i++){
 			for (int j = 0; j<tank.getZ(); j++){
-				if (tank.position[i][j].getLiveCell()){
-					drawRect(i,j,Colors.cellColor(),g);
-				}
-				else{
-					drawRect(i,j,Colors.acidColor(tank.position[i][j].getAcid()),g);
-				}
+				drawRect(i,j,Colors.color(tank.position[i][j].getAcid(), tank.position[i][j].getLiveCell()), g);
 			}
 		}
 	}
@@ -72,12 +67,7 @@ public class TankImg extends Component {
 		}
 		for (int i = 0; i<tank.getZ();i++){
 			for (int j = 0; j<tank.getZ(); j++){
-				if (tank.position[i][j].getLiveCell()){
-					drawRect(i,j,Colors.cellColor(),g);
-				}
-				else{
-					drawRect(i,j,Colors.acidColor(tank.position[i][j].getAcid()),g);
-				}
+				drawRect(i,j,Colors.color(tank.position[i][j].getAcid(), tank.position[i][j].getLiveCell()), g);
 			}
 		}
 	}

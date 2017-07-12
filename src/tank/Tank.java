@@ -33,7 +33,7 @@ public class Tank {
 					splitCell(x,y);
 				}
 				if (check == 2 ){
-					moveCell(x,y);
+					//moveCell(x,y);
 				}
 			}
 		}
@@ -41,7 +41,7 @@ public class Tank {
 	
 	public void moveCell(int x, int y){
 		
-		int check2 = -1;
+		double check2 = -1;
 		int[][] pos = new int[9][2];
 		int count = 0;
 		for (int i = 0; i < 3; i++){
@@ -92,6 +92,8 @@ public class Tank {
 		
 		int xx = 1;
 		int yy = 1;
+		
+		double[] cellStats = position[x][y].cell.cellStats();
 
 		for (int i = 0; i < 3; i++){
 			for (int j = 0; j < 3; j++){
@@ -102,7 +104,7 @@ public class Tank {
 			}
 		}
 		try{
-			position[x+dir[xx]][y+dir[yy]].putCell(new Cell());
+			position[x+dir[xx]][y+dir[yy]].putCell(new Cell(cellStats[0],cellStats[1],cellStats[2]));
 		}
 		catch(Exception e){}
 	}
@@ -111,8 +113,9 @@ public class Tank {
 		
 		StringBuffer s = new StringBuffer();
 		
-		for (int x = 0; x < 9; x++){
-			for (int y = 0; y < 9; y++){
+		for (int x = 0; x < z; x++){
+			for (int y = 0; y < z; y++){
+				
 				if (position[x][y].getLiveCell()){
 					s.append(1);
 				}
@@ -126,14 +129,14 @@ public class Tank {
 		return s.toString();
 	}
 	
-	public void addCellRandom(){
+	public void addCellRandom(double[] cellStats){
 		int xx = r.nextInt(z);
 		int yy = r.nextInt(z);
 		boolean bool = true;
 		
 		while (bool){
 			if (!position[xx][yy].liveCell){
-				position[xx][yy].putCell(new Cell());
+				position[xx][yy].putCell(new Cell(cellStats[0],cellStats[1],cellStats[2]));
 				bool = false;
 			}
 			else{
@@ -144,8 +147,8 @@ public class Tank {
 		
 	}
 
-	public void addCell(int xx, int yy){
-		position[xx][yy].putCell(new Cell());
+	public void addCell(int xx, int yy, double[] cellStats){
+		position[xx][yy].putCell(new Cell(cellStats[0],cellStats[1],cellStats[2]));
 	}
 	
 	public void createTank(){
@@ -155,6 +158,29 @@ public class Tank {
 				position[x][y] = new Position();
 			}
 		}
+	}
+	
+	public void printCells(){
+		
+		StringBuffer s = new StringBuffer();
+		int count = 0;
+		int k = 0;
+		
+		for (int i = 0; i < z; i++){
+			for (int j = 0; j < z; j++){
+				if (position[i][j].liveCell){
+					s.append(position[i][j].cell.age + " , " + i + "," + j + "    ");
+					count++;
+					k++;
+				}
+				if (k >= 5){
+					s.append("\n");
+					k = 0;
+				}
+			}
+		}
+		s.append("\n" + count);
+		System.out.println(s.toString());
 	}
 	
 }
