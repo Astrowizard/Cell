@@ -23,31 +23,23 @@ public class Colors {
 		
 	}
 	
-	public static Color color(double amount, boolean live){
+	public static Color color(double[] amount, float[] cellColor){
 		
 		Color color;
-		float blue = 0;
 		float red = 0;
+		float blue = 0;
 		float green = 0;
-		
-		if (live){
-			red = (float) amount;
-			green = (float) amount;
-			blue = (float) (1 - amount/2);
-		}
-		else{
-			red = (float) 1;
-			green = (float)1;
-			blue = (float) (1 - amount);
-		}
 		try{
+			red = (float) (1 - (amount[0]+cellColor[0]));
+			blue = (float) (1 - (amount[1] + cellColor[1]));
+			green = (float) (1 - (amount[2] + cellColor[2]));
 			color = new Color(red, green, blue);
 		}
 		catch(IllegalArgumentException e){
-			color = new Color(red, green, 1);
+			color = new Color(0, 0, 0);
+			System.out.println("***************Black box*****************");
 		}
 
-		
 		return color;
 		
 	}
