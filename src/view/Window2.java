@@ -13,11 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.Control;
 
 public class Window2 {
-	
-	Control control;
 	
 	JFrame f = new JFrame();
 	
@@ -39,21 +36,15 @@ public class Window2 {
 	JLabel moveLabel = new JLabel("Move Chance");
 	
 	JTextField size = new JTextField();
-	JTextField splitE = new JTextField();
-	JTextField maxA = new JTextField();
-	JTextField moveC = new JTextField();
+	//JTextField splitE = new JTextField();
+	//JTextField maxA = new JTextField();
+	//JTextField moveC = new JTextField();
 	
 	
 	double[] cellStats;
 
-	public Window2(double[] cellS){
+	public Window2(){
 		f.setVisible(true);
-		
-		cellStats = cellS;
-		
-		splitE.setText(Double.toString(cellStats[0]));
-		maxA.setText(Double.toString(cellStats[1]));
-		moveC.setText(Double.toString(cellStats[2]));
 		
 	}
 	
@@ -64,9 +55,6 @@ public class Window2 {
 		//f.setLocationByPlatform(true);
 		f.setFocusable(true);
 		size.setColumns(10);
-		splitE.setColumns(10);
-		maxA.setColumns(10);
-		moveC.setColumns(10);
 		
 		resetButton = rsb;
 		changeSize = csb;
@@ -83,11 +71,8 @@ public class Window2 {
 		f.add(mousePos);
 		
 		p.setLayout(new GridLayout(3,2));
-		p.add(splitE);
 		p.add(splitLabel);
-		p.add(maxA);
 		p.add(maxLabel);
-		p.add(moveC);
 		p.add(moveLabel);
 		
 		p2.add(confirmStats);
@@ -108,7 +93,7 @@ public class Window2 {
 		f.repaint();
 	}
 	
-	public void getCellStats(){
+	/*public void getCellStats(){
 		
 		String[] s = {splitE.getText(),maxA.getText(),moveC.getText()};
 		
@@ -134,7 +119,7 @@ public class Window2 {
 		splitE.setText(Double.toString(cellStats[0]));
 		maxA.setText(Double.toString(cellStats[1]));
 		moveC.setText(Double.toString(cellStats[2]));
-	}
+	}*/
 	
 	public String getNewSize(){
 		return size.getText();

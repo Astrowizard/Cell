@@ -1,6 +1,4 @@
-package view;
-
-import controller.Control;
+package controller;
 
 public class Open {
 	

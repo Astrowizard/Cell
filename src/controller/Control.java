@@ -301,7 +301,7 @@ public class Control {
 		img.view.addMouseListener(new CustomMouseListener());
 		
 		window1 = new Window1(tank, img);
-		window2 = new Window2(defCellStats);
+		window2 = new Window2();
 		
 		window1.thing(new CustomKeyListener(), new CustomMouseListener());
 		window2.init(resetButton(), changeSizeButton(), printCellsButton(), addRandomCellButton(), playButton(), pauseButton());
