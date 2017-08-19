@@ -1,0 +1,5 @@
+# Cell
+
+Cell is a simulation of "cells" in a "petri dish" that is a basic test of a grand goal of simulating a continuous dynamically changing environment with no outside input outside initial parameters. As of right now the environment exists for an extend length of time, however the parameters, and actions of the cells will eventually "kill" all of the cells within the environment. In the future I would like to include more cell and resource types, and combining this with other simulation projects. 
+
+At this point the working branch is the cell2 branch which I created after a break from the project and discovered that the master branch was ugly, and unorganized. So, I created another project that I called cell2 where I updated the organization of classes, and used functions from the cell project to create a working program. There is a working jar of the cell2 project in the cell2 branch. The master remains the master for posterity and I'm not sure what will happen if I merge cell2 with master as they are different projects technically.
